@@ -24,8 +24,9 @@ def extract_sequences(dataset_X):
     one-hot encoded complex sequences in dataset X
     """
     mhc_sequences = [reverseOneHot(arr[0:179, 0:20]) for arr in dataset_X]
-    pep_sequences = [reverseOneHot(arr[179:190, 0:20]) for arr in dataset_X]
-    tcr_sequences = [reverseOneHot(arr[192:, 0:20]) for arr in dataset_X]
+    pep_sequences = [reverseOneHot(arr[179:188, 0:20]) for arr in dataset_X]
+    tcr_sequences = [reverseOneHot(arr[188:, 0:20]) for arr in dataset_X]
+    print(len(mhc_sequences[0]), len(pep_sequences[0]), len(tcr_sequences[0]), dataset_X.shape)
     df_sequences = pd.DataFrame(
         {"MHC": mhc_sequences, "peptide": pep_sequences, "tcr": tcr_sequences}
     )
@@ -42,7 +43,6 @@ for fp in glob.glob("../hackathon_data_scripts/data/train/*input.npz"):
 
     data_list.append(data)
     target_list.append(targets)
-
 
 X_train = np.concatenate(data_list[:-1])
 y_train = np.concatenate(target_list[:-1])
@@ -67,7 +67,7 @@ for j, data in enumerate([X_val, X_train]):
         seq = SeqRecord(Seq(str(MHC)), id=f'MHC-{i}',description='')
         MHC_records.append(seq)
     
-    SeqIO.write(MHC_records, f'sequences/MHC-{name_list[j]}', 'fasta')
+    SeqIO.write(MHC_records, f'sequences/MHC-{name_list[j]}.fasta', 'fasta')
 
     # Peptides
     peptide_list = np.array(complex_sequences["peptide"], dtype=str)
@@ -78,7 +78,7 @@ for j, data in enumerate([X_val, X_train]):
         seq = SeqRecord(Seq(str(peptide)), id=f'peptide-{i}',description='')
         peptide_records.append(seq)
     
-    SeqIO.write(peptide_records, f'sequences/peptide-{name_list[j]}', 'fasta')
+    SeqIO.write(peptide_records, f'sequences/peptide-{name_list[j]}.fasta', 'fasta')
 
     # TCRs
     tcr_list = np.array(complex_sequences["tcr"], dtype=str)
@@ -87,6 +87,6 @@ for j, data in enumerate([X_val, X_train]):
     tcr_records = []
     for i, tcr in enumerate(unique_tcr):
         seq = SeqRecord(Seq(str(tcr)), id=f'tcr-{i}',description='')
-        MHC_records.append(seq)
+        tcr_records.append(seq)
     
-    SeqIO.write(MHC_records, f'sequences/tcr-{name_list[j]}', 'fasta')
+    SeqIO.write(tcr_records, f'sequences/tcr-{name_list[j]}.fasta', 'fasta')
