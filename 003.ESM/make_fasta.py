@@ -31,16 +31,16 @@ def extract_sequences(dataset_X):
     )
     return df_sequences
 
+path = "hackathon_data_scripts/data/train/"
+data_dir = "data/sequences/"
+data_list = []
+files = ['P3_input.npz', 'P4_input.npz', 'P2_input.npz', 'P1_input.npz']
+for fp in files:
+    data = np.load(path+fp)["arr_0"]
 
 
-data_dir = 'data/sequences'
-files = []
-for fp in glob.glob("hackathon_data_scripts/data/train/*input.npz"):
-    files.append(fp)
+    data_list.append(data)
 
-files = sorted(files)
-
-data_list = [np.load(fp)["arr_0"] for fp in files ]
 
 
 X_train = np.concatenate(data_list[:-1])
