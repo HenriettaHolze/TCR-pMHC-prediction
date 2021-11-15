@@ -32,16 +32,16 @@ def extract_sequences(dataset_X):
     return df_sequences
 
 
-data_list = []
-target_list = []
+
 data_dir = 'data/sequences'
-
+files = []
 for fp in glob.glob("hackathon_data_scripts/data/train/*input.npz"):
-    data = np.load(fp)["arr_0"]
-    targets = np.load(fp.replace("input", "labels"))["arr_0"]
+    files.append(fp)
 
-    data_list.append(data)
-    target_list.append(targets)
+files = sorted(files)
+
+data_list = [np.load(fp)["arr_0"] for fp in files ]
+
 
 X_train = np.concatenate(data_list[:-1])
 
@@ -64,7 +64,7 @@ for j, data in enumerate([X_val, X_train]):
     for i, MHC in enumerate(unique_mhc):
         seq = SeqRecord(Seq(str(MHC)), id=f'MHC-{i}',description='')
         MHC_records.append(seq)
-    print(len(MHC_records))
+
     SeqIO.write(MHC_records, data_dir + f'MHC-{name_list[j]}.fasta', 'fasta')
 
     # Peptides
@@ -75,7 +75,7 @@ for j, data in enumerate([X_val, X_train]):
     for i, peptide in enumerate(unique_peptide):
         seq = SeqRecord(Seq(str(peptide)), id=f'peptide-{i}',description='')
         peptide_records.append(seq)
-    print(len(peptide_records))
+
     SeqIO.write(peptide_records, data_dir + f'peptide-{name_list[j]}.fasta', 'fasta')
 
     # TCRs
@@ -86,5 +86,5 @@ for j, data in enumerate([X_val, X_train]):
     for i, tcr in enumerate(unique_tcr):
         seq = SeqRecord(Seq(str(tcr)), id=f'tcr-{i}',description='')
         tcr_records.append(seq)
-    print(len(tcr_records))
+
     SeqIO.write(tcr_records, data_dir + f'tcr-{name_list[j]}.fasta', 'fasta')
