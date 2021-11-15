@@ -77,7 +77,7 @@ for j, data in enumerate([X_val, X_train]):
     for i, peptide in enumerate(unique_peptide):
         seq = SeqRecord(Seq(str(peptide)), id=f'peptide-{i}',description='')
         peptide_records.append(seq)
-    
+
     SeqIO.write(peptide_records, f'sequences/peptide-{name_list[j]}.fasta', 'fasta')
 
     # TCRs
