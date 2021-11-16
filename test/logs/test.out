@@ -1,0 +1,58 @@
+Running script...
+Using device (CPU/GPU): cuda
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11047504: <myJob> in cluster <dcc> Done
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Tue Nov 16 12:39:04 2021
+Job was executed on host(s) <n-62-20-13>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Tue Nov 16 12:39:07 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/test> was used as the working directory.
+Started at Tue Nov 16 12:39:07 2021
+Terminated at Tue Nov 16 12:39:20 2021
+Results reported at Tue Nov 16 12:39:20 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/test.out
+ #BSUB -e logs/test.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/test
+ python3 test.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.94 sec.
+    Max Memory :                                 112 MB
+    Average Memory :                             112.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               32656.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   84 sec.
+    Turnaround time :                            16 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/test.err> for stderr output of this job.
+
