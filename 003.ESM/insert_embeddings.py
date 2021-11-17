@@ -50,7 +50,7 @@ def load_embeddings(folder_path : str, seq_counts : int, type : str):
     return data
 
 
-def make_mapdict(seqs : list[str], unique_seqs : list[str]):
+def make_mapdict(seqs : 'list[str]', unique_seqs : 'list[str]'):
     """
     Generate a dict in order to map sequences to the embeddings made on unique sequences
     """
