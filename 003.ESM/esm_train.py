@@ -12,9 +12,9 @@ def remove_mhc(data):
     '''
     Removes the MHC molecule, and sets the transformer terms to the new first residues
     '''
-    global_terms = data[:,:3,54:]
+    global_terms = data[:,1:3,54:]
     data = data[:,179:,:]
-    data[:,:3,54:] = global_terms
+    data[:,:2,54:] = global_terms
     return data
 
 X_train = np.load('data/X_train_mean_emb.npz')['arr_0']
@@ -53,7 +53,7 @@ val_ldr = torch.utils.data.DataLoader(val_ds, batch_size=bat_size, shuffle=True)
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device (CPU/GPU):", device)
-# device = torch.device("cpu")
+#device = torch.device("cpu")
 
 
 
@@ -62,7 +62,7 @@ print("Using device (CPU/GPU):", device)
 # input_size = 420
 _, input_size, n_features = X_train.shape
 n_local_feat = 27
-n_global_feat = 27 + 1280*3
+n_global_feat = 27 + 1280*2
 num_classes = 1
 # learning_rate = 0.01
 learning_rate = 0.001
@@ -105,7 +105,7 @@ class Net(nn.Module):
         local_features = x[:, :27, :]
         # global features are the same for the whole sequence -> take first value
         energy_features = x[:, 27:54, 0]
-        esm_features = x[:, 54:, :3]
+        esm_features = x[:, 54:, :2]
         esm_features = torch.flatten(esm_features, start_dim=-2)
         global_features = torch.cat((energy_features, esm_features), dim=1)
         ######## code from master thesis
@@ -161,15 +161,15 @@ for epoch in range(num_epochs):
     net.train()
     train_preds, train_preds_auc, train_targs = [], [], []
     for batch_idx, (data, target) in enumerate(train_ldr):
-        X_batch = data.float().detach().requires_grad_(True)
-        target_batch = torch.tensor(np.array(target), dtype=torch.float).unsqueeze(1)
+        X_batch = data.float().detach().requires_grad_(True).cuda(device)
+        target_batch = torch.tensor(np.array(target), dtype=torch.float).cuda(device).unsqueeze(1)
 
         optimizer.zero_grad()
         output = net(X_batch)
 
         # calculate weighted loss
         intermediate_loss = criterion(output, target_batch)
-        weights = torch.FloatTensor(abs(target_batch - loss_weight))
+        weights = torch.cuda.FloatTensor(abs(target_batch - loss_weight))
         batch_loss = torch.mean(weights * intermediate_loss)
         # batch_loss = criterion(output, target_batch)
         
@@ -183,32 +183,32 @@ for epoch in range(num_epochs):
         train_preds_auc += list(preds_auc.data.numpy().flatten())
         cur_loss += batch_loss.detach()
 
-    losses.append(cur_loss / len(train_ldr.dataset))
+    losses.append(cur_loss.cpu() / len(train_ldr.dataset))
 
     net.eval()
     ### Evaluate validation
     val_preds, val_preds_auc, val_targs = [], [], []
     with torch.no_grad():
         for batch_idx, (data, target) in enumerate(val_ldr):  ###
-            x_batch_val = data.float().detach()
-            y_batch_val = target.float().detach().unsqueeze(1)
+            x_batch_val = data.float().detach().cuda(device)
+            y_batch_val = target.float().detach().cuda(device).unsqueeze(1)
 
             output = net(x_batch_val)
 
             # calculate weighted loss
             intermediate_loss = criterion(output, y_batch_val)
-            weights = torch.FloatTensor(abs(y_batch_val - loss_weight))
+            weights = torch.cuda.FloatTensor(abs(y_batch_val - loss_weight))
             val_batch_loss = torch.mean(weights * intermediate_loss)
             # val_batch_loss = criterion(output, y_batch_val)
 
-            preds = np.round(output.detach())
-            val_preds += list(preds.data.numpy().flatten())
-            preds_auc = output.detach()
-            val_preds_auc += list(preds_auc.data.numpy().flatten())
-            val_targs += list(np.array(y_batch_val))
-            val_loss += val_batch_loss.detach()
+            preds = np.round(output.detach().cpu())
+            val_preds += list(preds.cpu().data.numpy().flatten())
+            preds_auc = output.detach().cpu()
+            val_preds_auc += list(preds_auc.cpu().data.numpy().flatten())
+            val_targs += list(np.array(y_batch_val.cpu()))
+            val_loss += val_batch_loss.cpu().detach()
 
-        val_losses.append(val_loss / len(val_ldr.dataset))
+        val_losses.append(val_loss.cpu() / len(val_ldr.dataset))
         print("\nEpoch:", epoch + 1)
 
         train_acc_cur = accuracy_score(train_targs, train_preds)
@@ -236,8 +236,8 @@ for epoch in range(num_epochs):
     if (val_loss / len(X_val)).item() < min_val_loss:
         no_epoch_improve = 0
         min_val_loss = (val_loss / len(X_val))
-        torch.save(net, 'early_stopping_model.pt')
-        best_epoch = epoch
+        torch.save(net, '003.ESM/early_stopping_model.pt')
+        best_epoch = epoch + 1
     else:
         no_epoch_improve +=1
     if no_epoch_improve == 10:
@@ -268,12 +268,12 @@ plt.xlabel("Epoch"), plt.ylabel("Acc")
 # Performance evaluation metrics of final model
 
 print('\n\n\nFinal Model Performance:')
-final_model = torch.load('early_stopping_model.pt')
+final_model = torch.load('003.ESM/early_stopping_model.pt')
 final_model.train()
 train_preds, train_preds_auc, train_targs = [], [], []
 for batch_idx, (data, target) in enumerate(train_ldr):
-    X_batch = data.float().detach().requires_grad_(True)
-    target_batch = torch.tensor(np.array(target), dtype=torch.float).unsqueeze(1)
+    X_batch = data.float().detach().requires_grad_(True).cuda(device)
+    target_batch = torch.tensor(np.array(target), dtype=torch.float).cuda(device).unsqueeze(1)
     
     output = final_model(X_batch)
     preds = np.round(output.detach().cpu())
@@ -286,17 +286,17 @@ final_model.eval()
 val_preds, val_preds_auc, val_targs = [], [], []
 with torch.no_grad():
     for batch_idx, (data, target) in enumerate(val_ldr):  ###
-        x_batch_val = data.float().detach()
-        y_batch_val = target.float().detach().unsqueeze(1)
+        x_batch_val = data.float().detach().cuda(device)
+        y_batch_val = target.float().detach().cuda(device).unsqueeze(1)
 
         output = final_model(x_batch_val)
 
-        preds = np.round(output.detach())
-        val_preds += list(preds.data.numpy().flatten())
-        preds_auc = output.detach()
+        preds = np.round(output.cpu().detach())
+        val_preds += list(preds.cpu().data.numpy().flatten())
+        preds_auc = output.cpu().detach()
         val_preds_auc += list(preds_auc.data.numpy().flatten())
-        val_targs += list(np.array(y_batch_val))
-        val_loss += val_batch_loss.detach()
+        val_targs += list(np.array(y_batch_val.cpu()))
+        val_loss += val_batch_loss.cpu().detach()
 
 print("MCC Train:", matthews_corrcoef(train_targs, train_preds))
 print("MCC Test:", matthews_corrcoef(val_targs, val_preds))
