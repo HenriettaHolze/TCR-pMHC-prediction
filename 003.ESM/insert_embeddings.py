@@ -184,8 +184,8 @@ def mean_embeddings_main():
     print(X_val[-1,:,-1])
     print(X_train.shape)
 
-    np.savez_compressed('data/X_train_mean_emb', X_train)
-    np.savez_compressed('data/X_val_mean_emb', X_val)
+    
+    return X_train, X_val
 
 
 def embeddings_main():
@@ -222,12 +222,16 @@ def embeddings_main():
 
     print(X_train.shape)
 
-    np.savez_compressed('data/X_train_emb', X_train)
-    np.savez_compressed('data/X_val_emb', X_val)
+    return X_train, X_val
 
 
 
 
 if __name__ == '__main__':
-    mean_embeddings_main()
-    embeddings_main()
+    X_train, X_val = mean_embeddings_main()
+    np.savez_compressed('data/X_train_mean_emb', X_train)
+    np.savez_compressed('data/X_val_mean_emb', X_val)
+
+    X_train, X_val = embeddings_main()
+    np.savez_compressed('data/X_train_emb', X_train)
+    np.savez_compressed('data/X_val_emb', X_val)
