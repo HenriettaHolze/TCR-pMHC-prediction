@@ -1,0 +1,96 @@
+Traceback (most recent call last):
+  File "esm_pca.py", line 161, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 161, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 160, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 160, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 161, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 160, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 160, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED
+Traceback (most recent call last):
+  File "esm_pca.py", line 160, in <module>
+    output = net(X_batch)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "esm_pca.py", line 110, in forward
+    x, (h, c) = self.rnn(x)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/zhome/24/8/154017/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py", line 570, in forward
+    self.dropout, self.training, self.bidirectional, self.batch_first)
+RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED

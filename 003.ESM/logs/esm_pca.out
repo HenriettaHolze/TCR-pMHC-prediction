@@ -1,0 +1,227 @@
+Running script...
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119652: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 15:00:32 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 15:00:34 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/003.ESM> was used as the working directory.
+Started at Mon Nov 22 15:00:34 2021
+Terminated at Mon Nov 22 15:00:38 2021
+Results reported at Mon Nov 22 15:00:38 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/003.ESM
+ python3 esm_train.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.79 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   5 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 1334
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+Epoch: 1
+Training loss: 0.0047646076418459415 Validation loss: 0.0024483362212777138
+MCC Train: 0.30008373659888105 MCC val: 0.6050258693336431
+
+Epoch: 2
+Training loss: 0.003195360070094466 Validation loss: 0.002546402858570218
+MCC Train: 0.45706522602407523 MCC val: 0.5408391039261679
+
+Epoch: 3
+Training loss: 0.002884824760258198 Validation loss: 0.0024888883344829082
+MCC Train: 0.48907376523054913 MCC val: 0.5644073021770982
+
+Epoch: 4
+Training loss: 0.0027278007473796606 Validation loss: 0.002363538136705756
+MCC Train: 0.5305722188904197 MCC val: 0.5847225726320211
+
+Epoch: 5
+Training loss: 0.0026628042105585337 Validation loss: 0.0023409221321344376
+MCC Train: 0.5481810072285449 MCC val: 0.6078182078402531
+
+Epoch: 6
+Training loss: 0.002618582919239998 Validation loss: 0.0023301176261156797
+MCC Train: 0.5771491494760778 MCC val: 0.566098732450548
+
+Epoch: 7
+Training loss: 0.0024750519078224897 Validation loss: 0.002311751013621688
+MCC Train: 0.5922427309701372 MCC val: 0.6845981452413178
+
+Epoch: 8
+Training loss: 0.002413382288068533 Validation loss: 0.0022882805205881596
+MCC Train: 0.6037367598378235 MCC val: 0.6244152656721426
+
+Epoch: 9
+Training loss: 0.0024057833943516016 Validation loss: 0.0021678139455616474
+MCC Train: 0.6150462159134914 MCC val: 0.683151486207175
+
+Epoch: 10
+Training loss: 0.002387710614129901 Validation loss: 0.002132508670911193
+MCC Train: 0.608294398342766 MCC val: 0.6122226784652827
+
+Epoch: 11
+Training loss: 0.0022747230250388384 Validation loss: 0.0021957517601549625
+MCC Train: 0.6412128641492941 MCC val: 0.6089747417616072
+
+Epoch: 12
+Training loss: 0.0022352265659719706 Validation loss: 0.0021106472704559565
+MCC Train: 0.6266590718437053 MCC val: 0.6590535910675638
+
+Epoch: 13
+Training loss: 0.00217896094545722 Validation loss: 0.002177339978516102
+MCC Train: 0.64349191190515 MCC val: 0.642612117226856
+
+Epoch: 14
+Training loss: 0.002166158054023981 Validation loss: 0.0022354121319949627
+MCC Train: 0.6469618675063196 MCC val: 0.592893053957568
+
+Epoch: 15
+Training loss: 0.002151979599148035 Validation loss: 0.002253846265375614
+MCC Train: 0.6286815815617686 MCC val: 0.6040801172346056
+
+Epoch: 16
+Training loss: 0.002036134945228696 Validation loss: 0.0021523497998714447
+MCC Train: 0.6716372189384328 MCC val: 0.6236641878281194
+
+Epoch: 17
+Training loss: 0.0020714574493467808 Validation loss: 0.0021160899195820093
+MCC Train: 0.6475161584957417 MCC val: 0.6336999516064401
+
+Epoch: 18
+Training loss: 0.0020487927831709385 Validation loss: 0.0022902910131961107
+MCC Train: 0.6601365932953709 MCC val: 0.5664798688454333
+
+Epoch: 19
+Training loss: 0.0019797899294644594 Validation loss: 0.002304975874722004
+MCC Train: 0.6675316133354878 MCC val: 0.5721791160359295
+
+Epoch: 20
+Training loss: 0.0019286945462226868 Validation loss: 0.002303226850926876
+MCC Train: 0.6524784634250278 MCC val: 0.6291208765207525
+
+Epoch: 21
+Training loss: 0.0019394137198105454 Validation loss: 0.0022932658903300762
+MCC Train: 0.6779436899293958 MCC val: 0.5972761595807061
+
+Epoch: 22
+Training loss: 0.0019355571130290627 Validation loss: 0.0022098016925156116
+MCC Train: 0.6620480722983632 MCC val: 0.6446877600092892
+Early stopping
+
+
+
+
+Final Model Performance:
+MCC Train: 0.686584463912453
+MCC Test: 0.6584290694652613
+Precision Test: 0.7383419689119171
+Recall Test: 0.75
+F1 Test: 0.7441253263707571
+Confusion matrix train:
+[[2918  217]
+ [ 267  778]]
+Confusion matrix test:
+[[1045  101]
+ [  95  285]]
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119654: <myJob> in cluster <dcc> Done
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 15:02:07 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 15:02:08 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/003.ESM> was used as the working directory.
+Started at Mon Nov 22 15:02:08 2021
+Terminated at Mon Nov 22 15:09:02 2021
+Results reported at Mon Nov 22 15:09:02 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/003.ESM
+ python3 esm_train.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   405.45 sec.
+    Max Memory :                                 26719 MB
+    Average Memory :                             22537.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               6049.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   503 sec.
+    Turnaround time :                            415 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+

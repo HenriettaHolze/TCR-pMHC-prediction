@@ -1,0 +1,1252 @@
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119834: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 15:59:05 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 15:59:06 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 15:59:06 2021
+Terminated at Mon Nov 22 15:59:17 2021
+Results reported at Mon Nov 22 15:59:17 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   9.74 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   30 sec.
+    Turnaround time :                            12 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+Epoch: 1
+Training loss: 0.004979071207344532 Validation loss: 0.004076640587300062
+MCC Train: -0.01686234088113262 MCC val: 0.06065582291641311
+
+Epoch: 2
+Training loss: 0.004533545114099979 Validation loss: 0.00406385725364089
+MCC Train: 0.015200335469528054 MCC val: 0.05600249347279029
+
+Epoch: 3
+Training loss: 0.004345212131738663 Validation loss: 0.0040711769834160805
+MCC Train: 0.052541844865313145 MCC val: 0.06310121754705494
+
+Epoch: 4
+Training loss: 0.00427708774805069 Validation loss: 0.004066061694175005
+MCC Train: 0.02410309212260125 MCC val: 0.09067745308423962
+
+Epoch: 5
+Training loss: 0.004133510868996382 Validation loss: 0.004034652374684811
+MCC Train: 0.05994861025917156 MCC val: 0.19736299598407714
+
+Epoch: 6
+Training loss: 0.0041342806071043015 Validation loss: 0.0040161521174013615
+MCC Train: 0.07238445168709229 MCC val: 0.22256507992877703
+
+Epoch: 7
+Training loss: 0.004040660336613655 Validation loss: 0.003920626826584339
+MCC Train: 0.11654945265703935 MCC val: 0.2712823026147092
+
+Epoch: 8
+Training loss: 0.003908386453986168 Validation loss: 0.0037589336279779673
+MCC Train: 0.18478720626941966 MCC val: 0.27254093551728653
+
+Epoch: 9
+Training loss: 0.003845535684376955 Validation loss: 0.0034982883371412754
+MCC Train: 0.2094094488449745 MCC val: 0.30710284775236313
+
+Epoch: 10
+Training loss: 0.003616258967667818 Validation loss: 0.0032101052347570658
+MCC Train: 0.26931904035822685 MCC val: 0.39947836677822257
+
+Epoch: 11
+Training loss: 0.003393046325072646 Validation loss: 0.0029493672773241997
+MCC Train: 0.3728193961795078 MCC val: 0.5953783575850192
+
+Epoch: 12
+Training loss: 0.0030899883713573217 Validation loss: 0.002908596768975258
+MCC Train: 0.5026717687827907 MCC val: 0.622695630623534
+
+Epoch: 13
+Training loss: 0.0029642709996551275 Validation loss: 0.0027942978776991367
+MCC Train: 0.5606890255863926 MCC val: 0.6478862484283258
+
+Epoch: 14
+Training loss: 0.00275959144346416 Validation loss: 0.0026202816516160965
+MCC Train: 0.5962173723806472 MCC val: 0.6765001127404299
+
+Epoch: 15
+Training loss: 0.002680813893675804 Validation loss: 0.002553921425715089
+MCC Train: 0.5855569619897253 MCC val: 0.6760265326357632
+
+Epoch: 16
+Training loss: 0.002652476541697979 Validation loss: 0.0024706025142222643
+MCC Train: 0.5924746102849949 MCC val: 0.6604151550293282
+
+Epoch: 17
+Training loss: 0.0025313636288046837 Validation loss: 0.0023599108681082726
+MCC Train: 0.61629299278041 MCC val: 0.6598022291887857
+
+Epoch: 18
+Training loss: 0.002496154746040702 Validation loss: 0.002508816309273243
+MCC Train: 0.5982165165791659 MCC val: 0.6423898817533539
+
+Epoch: 19
+Training loss: 0.002412936184555292 Validation loss: 0.0024256648030132055
+MCC Train: 0.6235683327148183 MCC val: 0.6729200605522523
+
+Epoch: 20
+Training loss: 0.002462519332766533 Validation loss: 0.0024008145555853844
+MCC Train: 0.6207519433928084 MCC val: 0.6528976427036789
+
+Epoch: 21
+Training loss: 0.002380684018135071 Validation loss: 0.0022882106713950634
+MCC Train: 0.6199891947742623 MCC val: 0.6656613185051445
+
+Epoch: 22
+Training loss: 0.0022557079792022705 Validation loss: 0.002419864060357213
+MCC Train: 0.656783101428922 MCC val: 0.5448917293477534
+
+Epoch: 23
+Training loss: 0.0023442592937499285 Validation loss: 0.00228318409062922
+MCC Train: 0.6338466055460601 MCC val: 0.6366352381661071
+
+Epoch: 24
+Training loss: 0.0022638326045125723 Validation loss: 0.002318959916010499
+MCC Train: 0.6431764217917963 MCC val: 0.6757471466204846
+
+Epoch: 25
+Training loss: 0.0022317355033010244 Validation loss: 0.002258131979033351
+MCC Train: 0.6652731576973897 MCC val: 0.6346996278298068
+
+Epoch: 26
+Training loss: 0.0021632255520671606 Validation loss: 0.002313971519470215
+MCC Train: 0.6574159772896968 MCC val: 0.6062453135009117
+
+Epoch: 27
+Training loss: 0.002062214072793722 Validation loss: 0.0023125275038182735
+MCC Train: 0.6712214050678796 MCC val: 0.681413498608429
+
+Epoch: 28
+Training loss: 0.0020875323098152876 Validation loss: 0.0022010812535881996
+MCC Train: 0.6936976724484771 MCC val: 0.6672443546461013
+
+Epoch: 29
+Training loss: 0.0020819513592869043 Validation loss: 0.0022778604179620743
+MCC Train: 0.683967905513781 MCC val: 0.6327142922149823
+
+Epoch: 30
+Training loss: 0.0019614023622125387 Validation loss: 0.002382313134148717
+MCC Train: 0.7051040361524266 MCC val: 0.5589825620535488
+
+Epoch: 31
+Training loss: 0.0020247993525117636 Validation loss: 0.0024252787698060274
+MCC Train: 0.6827924704858559 MCC val: 0.6847133683267999
+
+Epoch: 32
+Training loss: 0.0021131308749318123 Validation loss: 0.002387717831879854
+MCC Train: 0.6875562300356548 MCC val: 0.6362091527341664
+
+Epoch: 33
+Training loss: 0.00205853465013206 Validation loss: 0.0022834313567727804
+MCC Train: 0.6611601868985382 MCC val: 0.6836487727229115
+
+Epoch: 34
+Training loss: 0.0019666175357997417 Validation loss: 0.002253929153084755
+MCC Train: 0.699888014050045 MCC val: 0.6683397352147832
+
+Epoch: 35
+Training loss: 0.0019197073997929692 Validation loss: 0.002304012654349208
+MCC Train: 0.6793011862473209 MCC val: 0.6716893930707046
+
+Epoch: 36
+Training loss: 0.0018331670435145497 Validation loss: 0.0023274433333426714
+MCC Train: 0.7077400712973061 MCC val: 0.6761786838759598
+
+Epoch: 37
+Training loss: 0.0018215294694527984 Validation loss: 0.0028189171571284533
+MCC Train: 0.7043332545247043 MCC val: 0.6676200821251511
+
+Epoch: 38
+Training loss: 0.0019830181263387203 Validation loss: 0.002305137924849987
+MCC Train: 0.6718324761719455 MCC val: 0.6744994277437647
+Early stopping
+
+
+
+
+Final Model Performance:
+MCC Train: 0.7035843343849043
+MCC Test: 0.6709380634650699
+Precision Test: 0.7573333333333333
+Recall Test: 0.7473684210526316
+F1 Test: 0.752317880794702
+Confusion matrix train:
+[[2890  245]
+ [ 223  822]]
+Confusion matrix test:
+[[1055   91]
+ [  96  284]]
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119841: <myJob> in cluster <dcc> Done
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:00:50 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:00:51 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:00:51 2021
+Terminated at Mon Nov 22 16:02:43 2021
+Results reported at Mon Nov 22 16:02:43 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   105.86 sec.
+    Max Memory :                                 3515 MB
+    Average Memory :                             3515.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29253.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   191 sec.
+    Turnaround time :                            113 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119859: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:04:41 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:04:42 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:04:42 2021
+Terminated at Mon Nov 22 16:05:01 2021
+Results reported at Mon Nov 22 16:05:01 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   14.78 sec.
+    Max Memory :                                 2251 MB
+    Average Memory :                             2251.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30517.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   125 sec.
+    Turnaround time :                            20 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119875: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:08:11 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:08:12 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:08:12 2021
+Terminated at Mon Nov 22 16:08:29 2021
+Results reported at Mon Nov 22 16:08:29 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.53 sec.
+    Max Memory :                                 2259 MB
+    Average Memory :                             2259.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30509.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   44 sec.
+    Turnaround time :                            18 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119891: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:10:30 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:10:32 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:10:32 2021
+Terminated at Mon Nov 22 16:10:47 2021
+Results reported at Mon Nov 22 16:10:47 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.46 sec.
+    Max Memory :                                 2627 MB
+    Average Memory :                             2625.33 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30141.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   14 sec.
+    Turnaround time :                            17 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119903: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:15:05 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:15:06 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:15:06 2021
+Terminated at Mon Nov 22 16:15:21 2021
+Results reported at Mon Nov 22 16:15:21 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.52 sec.
+    Max Memory :                                 2695 MB
+    Average Memory :                             2695.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30073.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   61 sec.
+    Turnaround time :                            16 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+Epoch: 1
+Training loss: 0.005176665261387825 Validation loss: 0.004083462059497833
+MCC Train: -0.008287703911751132 MCC val: 0.011964369569966797
+
+Epoch: 2
+Training loss: 0.004541010595858097 Validation loss: 0.0040851766243577
+MCC Train: 0.026799882335530142 MCC val: 0.02952047211079637
+
+Epoch: 3
+Training loss: 0.004429562017321587 Validation loss: 0.004079494159668684
+MCC Train: 0.001933826137392631 MCC val: 0.004248859177259113
+
+Epoch: 4
+Training loss: 0.004312808625400066 Validation loss: 0.00407970417290926
+MCC Train: -0.008011961670962088 MCC val: 0.011964369569966797
+
+Epoch: 5
+Training loss: 0.004202831536531448 Validation loss: 0.004060542210936546
+MCC Train: 0.02794448030127211 MCC val: 0.051681508640169245
+
+Epoch: 6
+Training loss: 0.00415146304294467 Validation loss: 0.004022476263344288
+MCC Train: 0.042851647271240134 MCC val: 0.13517310018075218
+
+Epoch: 7
+Training loss: 0.004042373970150948 Validation loss: 0.003967009950429201
+MCC Train: 0.1011099877233638 MCC val: 0.17467939575111674
+
+Epoch: 8
+Training loss: 0.003979597706347704 Validation loss: 0.0038609167095273733
+MCC Train: 0.14347850750057667 MCC val: 0.23620308420359476
+
+Epoch: 9
+Training loss: 0.0039018411189317703 Validation loss: 0.0038095619529485703
+MCC Train: 0.19750365737191983 MCC val: 0.23912555177130101
+
+Epoch: 10
+Training loss: 0.0038470937870442867 Validation loss: 0.0037474154960364103
+MCC Train: 0.24086371503843046 MCC val: 0.2667189867368287
+
+Epoch: 11
+Training loss: 0.003799540689215064 Validation loss: 0.0036711052525788546
+MCC Train: 0.24426053494228686 MCC val: 0.286178766621731
+
+Epoch: 12
+Training loss: 0.00378120644018054 Validation loss: 0.0037125262897461653
+MCC Train: 0.2466202627493679 MCC val: 0.26777453904009274
+
+Epoch: 13
+Training loss: 0.003761753672733903 Validation loss: 0.0036646039225161076
+MCC Train: 0.2826355106531064 MCC val: 0.2862755493141117
+
+Epoch: 14
+Training loss: 0.003688836470246315 Validation loss: 0.003554354188963771
+MCC Train: 0.2753680548118231 MCC val: 0.3241103705986156
+
+Epoch: 15
+Training loss: 0.003557131625711918 Validation loss: 0.003289890708401799
+MCC Train: 0.29738626095089754 MCC val: 0.324846905052731
+
+Epoch: 16
+Training loss: 0.0031711619812995195 Validation loss: 0.0028942041099071503
+MCC Train: 0.4056386152791532 MCC val: 0.6316913782994862
+
+Epoch: 17
+Training loss: 0.0029327203519642353 Validation loss: 0.0028628145810216665
+MCC Train: 0.5650477160307769 MCC val: 0.6249716972812701
+
+Epoch: 18
+Training loss: 0.00285937637090683 Validation loss: 0.0025777355767786503
+MCC Train: 0.5593886344709214 MCC val: 0.6219481382717781
+
+Epoch: 19
+Training loss: 0.002750508254393935 Validation loss: 0.002513245912268758
+MCC Train: 0.5854866399610666 MCC val: 0.6571535068929283
+
+Epoch: 20
+Training loss: 0.0027278924826532602 Validation loss: 0.0025169437285512686
+MCC Train: 0.5809664444924005 MCC val: 0.5975036296916221
+
+Epoch: 21
+Training loss: 0.002584381029009819 Validation loss: 0.0024138991720974445
+MCC Train: 0.5746853324025406 MCC val: 0.649819305097177
+
+Epoch: 22
+Training loss: 0.002532001119107008 Validation loss: 0.0024032045621424913
+MCC Train: 0.591984159847141 MCC val: 0.6712009315799884
+
+Epoch: 23
+Training loss: 0.002464987337589264 Validation loss: 0.00235734018497169
+MCC Train: 0.5951497361918857 MCC val: 0.647759302758445
+
+Epoch: 24
+Training loss: 0.0023617614060640335 Validation loss: 0.002280769869685173
+MCC Train: 0.6208307134467801 MCC val: 0.6354406709661287
+
+Epoch: 25
+Training loss: 0.0023405717220157385 Validation loss: 0.002204354852437973
+MCC Train: 0.6272822924906472 MCC val: 0.66301418152101
+
+Epoch: 26
+Training loss: 0.0022702296264469624 Validation loss: 0.0021929992362856865
+MCC Train: 0.6287023822115497 MCC val: 0.6436787124076679
+
+Epoch: 27
+Training loss: 0.0023206479381769896 Validation loss: 0.0022304782178252935
+MCC Train: 0.6285559294237926 MCC val: 0.6360289698739267
+
+Epoch: 28
+Training loss: 0.0022149221040308475 Validation loss: 0.0022426845971494913
+MCC Train: 0.6556711888272607 MCC val: 0.6345562943121792
+
+Epoch: 29
+Training loss: 0.002130743581801653 Validation loss: 0.002157172653824091
+MCC Train: 0.6631961325737195 MCC val: 0.6759430264758435
+
+Epoch: 30
+Training loss: 0.002216167049482465 Validation loss: 0.002206558594480157
+MCC Train: 0.6616985088866327 MCC val: 0.6518865468074887
+
+Epoch: 31
+Training loss: 0.0021143995691090822 Validation loss: 0.002239611465483904
+MCC Train: 0.6831803088021474 MCC val: 0.5941813991682148
+
+Epoch: 32
+Training loss: 0.0021452466025948524 Validation loss: 0.0022110019344836473
+MCC Train: 0.6609745181793555 MCC val: 0.6237135296751749
+
+Epoch: 33
+Training loss: 0.0020892424508929253 Validation loss: 0.0022167947608977556
+MCC Train: 0.6724015067589251 MCC val: 0.6586437478418303
+
+Epoch: 34
+Training loss: 0.002049637259915471 Validation loss: 0.0022934924345463514
+MCC Train: 0.6837824406315608 MCC val: 0.6085521452192935
+
+Epoch: 35
+Training loss: 0.002010966418311 Validation loss: 0.0021854229271411896
+MCC Train: 0.6798166642465858 MCC val: 0.635017757953329
+
+Epoch: 36
+Training loss: 0.0020388599950820208 Validation loss: 0.0022895848378539085
+MCC Train: 0.6856953625998472 MCC val: 0.6630101073620274
+
+Epoch: 37
+Training loss: 0.001987397437915206 Validation loss: 0.002582637593150139
+MCC Train: 0.6690837085170526 MCC val: 0.565218248322209
+
+Epoch: 38
+Training loss: 0.0020078676752746105 Validation loss: 0.0022634814959019423
+MCC Train: 0.6967253148132496 MCC val: 0.623373105444411
+
+Epoch: 39
+Training loss: 0.001967240823432803 Validation loss: 0.002565281465649605
+MCC Train: 0.6899720956074904 MCC val: 0.5421103648895071
+Early stopping
+
+
+
+
+Final Model Performance:
+MCC Train: 0.6868059456178521
+MCC Test: 0.6518865468074887
+Precision Test: 0.7196029776674938
+Recall Test: 0.7631578947368421
+F1 Test: 0.7407407407407408
+Confusion matrix train:
+[[2893  242]
+ [ 248  797]]
+Confusion matrix test:
+[[1033  113]
+ [  90  290]]
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119909: <myJob> in cluster <dcc> Done
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:16:43 2021
+Job was executed on host(s) <n-62-20-13>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:16:44 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:16:44 2021
+Terminated at Mon Nov 22 16:19:01 2021
+Results reported at Mon Nov 22 16:19:01 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   126.86 sec.
+    Max Memory :                                 3511 MB
+    Average Memory :                             2903.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29257.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   254 sec.
+    Turnaround time :                            138 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119922: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:21:24 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:21:26 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:21:26 2021
+Terminated at Mon Nov 22 16:21:41 2021
+Results reported at Mon Nov 22 16:21:41 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.60 sec.
+    Max Memory :                                 2394 MB
+    Average Memory :                             2394.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30374.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   74 sec.
+    Turnaround time :                            17 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119929: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:22:48 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:22:49 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:22:49 2021
+Terminated at Mon Nov 22 16:23:03 2021
+Results reported at Mon Nov 22 16:23:03 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.08 sec.
+    Max Memory :                                 2840 MB
+    Average Memory :                             2840.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29928.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   82 sec.
+    Turnaround time :                            15 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119932: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:23:40 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:23:41 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:23:41 2021
+Terminated at Mon Nov 22 16:23:56 2021
+Results reported at Mon Nov 22 16:23:56 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.22 sec.
+    Max Memory :                                 2639 MB
+    Average Memory :                             2639.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30129.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   53 sec.
+    Turnaround time :                            16 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119945: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:25:04 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:25:05 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:25:05 2021
+Terminated at Mon Nov 22 16:25:21 2021
+Results reported at Mon Nov 22 16:25:21 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   14.64 sec.
+    Max Memory :                                 2545 MB
+    Average Memory :                             2545.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30223.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   85 sec.
+    Turnaround time :                            17 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11119953: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:25:54 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:25:55 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:25:55 2021
+Terminated at Mon Nov 22 16:26:10 2021
+Results reported at Mon Nov 22 16:26:10 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.27 sec.
+    Max Memory :                                 2808 MB
+    Average Memory :                             2808.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29960.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   49 sec.
+    Turnaround time :                            16 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11120130: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 16:56:59 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 16:57:00 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 16:57:00 2021
+Terminated at Mon Nov 22 16:57:15 2021
+Results reported at Mon Nov 22 16:57:15 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   13.32 sec.
+    Max Memory :                                 2599 MB
+    Average Memory :                             2599.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30169.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   122 sec.
+    Turnaround time :                            16 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
+Running script...
+val set shape: 1526 241 154
+Percent positive samples in train: 25.0
+Percent positive samples in val: 24.901703800786372
+
+NOTE:
+Setting batch-size to 64
+Using device (CPU/GPU): cuda
+loss weight 0.25
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11120146: <myJob> in cluster <dcc> Exited
+
+Job <myJob> was submitted from host <gbarlogin2> by user <s202770> in cluster <dcc> at Mon Nov 22 17:01:49 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s202770> in cluster <dcc> at Mon Nov 22 17:02:55 2021
+</zhome/24/8/154017> was used as the home directory.
+</zhome/24/8/154017/TCR-pMHC-prediction/005.ESM_pca> was used as the working directory.
+Started at Mon Nov 22 17:02:55 2021
+Terminated at Mon Nov 22 17:03:11 2021
+Results reported at Mon Nov 22 17:03:11 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+ #BSUB -q gpuv100
+ #BSUB -gpu "num=1"
+ #BSUB -J myJob
+ #BSUB -n 1
+ #BSUB -W 01:00
+ #BSUB -R "rusage[mem=32GB]"
+ #BSUB -o logs/esm_pca.out
+ #BSUB -e logs/esm_pca.err
+
+ echo "Running script..."
+ cd ~/TCR-pMHC-prediction/005.ESM_pca
+ python3 esm_pca.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   14.58 sec.
+    Max Memory :                                 3164 MB
+    Average Memory :                             2168.33 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29604.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   33 sec.
+    Turnaround time :                            82 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/esm_pca.err> for stderr output of this job.
+
