@@ -7,6 +7,18 @@ import torch.nn.functional as F  # All functions that don't have any parameters
 import torch.optim as optim  # For all Optimization algorithms, SGD, Adam, etc.
 from sklearn import metrics
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, roc_curve, matthews_corrcoef
+import random
+
+
+def setup_seed(seed):
+    random.seed(seed)                          
+    np.random.seed(seed)                       
+    torch.manual_seed(seed)                    
+    torch.cuda.manual_seed(seed)               
+    torch.cuda.manual_seed_all(seed)           
+    torch.backends.cudnn.deterministic = True  
+# Set seed
+setup_seed(1)
 
 X_train = np.load('../data/X_train_pca_100.npz')['arr_0']
 
@@ -75,7 +87,8 @@ class Net(nn.Module):
         
         ######## code from master thesis 
         
-        self.rnn = nn.LSTM(input_size=100,hidden_size=26,num_layers=3, dropout=0.5, batch_first=True, bidirectional = True)
+        self.rnn1 = nn.LSTM(input_size=100,hidden_size=26,num_layers=1, batch_first=True, bidirectional = True)
+        self.rnn2 = nn.LSTM(input_size=26*2,hidden_size=26,num_layers=1, batch_first=True, bidirectional = True)
         self.bn1 = nn.BatchNorm1d(26*2 + n_global_feat)
         self.drop = nn.Dropout(p = 0.6) # Dunno if dropout should be even higher?? - Christian
         self.fc1 = nn.Linear(26*2 + n_global_feat, 26*2 + n_global_feat)
@@ -107,7 +120,11 @@ class Net(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
         x = self.conv2_bn(x)
         x = x.transpose_(2, 1)
-        x, (h, c) = self.rnn(x)
+        x, (h, c) = self.rnn1(x)
+        x = self.drop(x)
+        x, (h, c) = self.rnn2(x)
+        x = self.drop(x)
+        x, (h, c) = self.rnn2(x)
         # concatenate bidirectional output of last layer
         cat = torch.cat((h[-2, :, :], h[-1, :, :]), dim=1)
         # add global features
