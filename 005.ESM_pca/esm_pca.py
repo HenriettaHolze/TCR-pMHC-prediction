@@ -105,7 +105,7 @@ class Net(nn.Module):
         torch.nn.init.xavier_uniform_(self.fc3.weight)
 
     def forward(self, x):
-        local_features = x[:, 20:27, :] ##
+        # local_features = x[:, 20:27, :] ##
         # global features are the same for the whole sequence -> take first value
         global_features = x[:, 27:54, 0]
         esm_features = x[:, 54:, :]
