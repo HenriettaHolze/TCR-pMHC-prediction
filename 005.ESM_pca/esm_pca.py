@@ -20,8 +20,8 @@ def setup_seed(seed):
 # Set seed
 setup_seed(1)
 
-X_train = np.load('../data/X_train_pca_100.npz')['arr_0']
-X_val = np.load('../data/X_val_pca_100.npz')['arr_0']
+X_train = np.load('../data/X_train_pca.npz')['arr_0']
+X_val = np.load('../data/X_val_pca.npz')['arr_0']
 X_test = np.load('../data/X_test_pca.npz')['arr_0']
 
 y_train = np.load('../data/y_train.npz')['arr_0']
@@ -322,7 +322,7 @@ with torch.no_grad():
 
 test_preds, test_preds_auc, test_targs = [], [], []
 with torch.no_grad():
-    for batch_idx, (data, target) in enumerate(test_ldr):  ###
+    for batch_idx, (data, target) in enumerate(val_ldr):  ###
         x_batch_val = data.float().detach().cuda(device)
         y_batch_val = target.float().detach().cuda(device).unsqueeze(1)
 
