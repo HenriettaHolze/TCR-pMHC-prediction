@@ -287,11 +287,27 @@ for batch_idx, (data, target) in enumerate(train_ldr):
     target_batch = torch.tensor(np.array(target), dtype=torch.float).cuda(device).unsqueeze(1)
     
     output = final_model(X_batch)
-    preds = np.round(output.detach().cpu())
+    # preds = np.round(output.detach().cpu())
+    preds = output.detach().cpu()
     preds_auc = output.detach().cpu()
     train_targs += list(np.array(target_batch.cpu()))
     train_preds += list(preds.data.numpy().flatten())
     train_preds_auc += list(preds_auc.data.numpy().flatten())
+    
+    
+# Selection of the best MCC
+best_mcc = 0
+best_threshold = None
+thresholds = np.linspace(0.01,0.99,50)
+for threshold in thresholds:
+    rounded_preds = (train_preds > threshold).astype(int)
+    mcc = matthews_corrcoef(train_targs, rounded_preds)
+    if mcc > best_mcc:
+        best_mcc = mcc
+        best_threshold = threshold
+        
+print("After training, the best MCC found is {} with threshold = {}".format(best_mcc,best_threshold))
+
 
 final_model.eval()
 val_preds, val_preds_auc, val_targs = [], [], []
@@ -302,12 +318,17 @@ with torch.no_grad():
 
         output = final_model(x_batch_val)
 
-        preds = np.round(output.cpu().detach())
+        # preds = np.round(output.cpu().detach())
+        preds = output.cpu().detach()
         val_preds += list(preds.cpu().data.numpy().flatten())
         preds_auc = output.cpu().detach()
         val_preds_auc += list(preds_auc.data.numpy().flatten())
         val_targs += list(np.array(y_batch_val.cpu()))
         val_loss += val_batch_loss.cpu().detach()
+
+
+train_preds = (train_preds > best_threshold).astype(int)
+val_preds = (val_preds > best_threshold).astype(int)
 
 print("MCC Train:", matthews_corrcoef(train_targs, train_preds))
 print("MCC Test:", matthews_corrcoef(val_targs, val_preds))
