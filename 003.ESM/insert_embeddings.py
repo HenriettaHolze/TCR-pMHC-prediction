@@ -200,18 +200,24 @@ def embeddings_main():
 
     X_train = np.concatenate(data_list[:-1])
     X_val = np.concatenate(data_list[-1:])
+    X_test = np.load('hackathon_data_scripts/data/final_test/P5_input.npz')['arr_0']
     X_train_counts = get_unique_counts(X_train)
     X_val_counts = get_unique_counts(X_val)
+    X_test_counts = get_unique_counts(X_test)
 
     MHC_train = load_embeddings("data/embeddings/MHC-X_train", X_train_counts[0], 'MHC')
     MHC_val = load_embeddings("data/embeddings/MHC-X_val", X_val_counts[0], 'MHC')
+    MHC_test = load_embeddings("data/embeddings/MHC-X_test", X_test_counts[0], 'MHC')
     pep_train = load_embeddings("data/embeddings/peptide-X_train", X_train_counts[1], 'peptide')
     pep_val = load_embeddings("data/embeddings/peptide-X_val", X_val_counts[1], 'peptide')
+    pep_test = load_embeddings("data/embeddings/peptide-X_test", X_test_counts[1], 'peptide')
     tcr_train = load_embeddings("data/embeddings/tcr-X_train", X_train_counts[2], 'tcr')
     tcr_val = load_embeddings("data/embeddings/tcr-X_val", X_val_counts[2],'tcr')
+    tcr_test = load_embeddings("data/embeddings/tcr-X_test", X_test_counts[2],'tcr')
 
     X_val = impute_embeddings(X_val, MHC_val, pep_val, tcr_val)
     X_train = impute_embeddings(X_train, MHC_train, pep_train, tcr_train)
+    X_test = impute_embeddings(X_test, MHC_test, pep_test, tcr_test)
 
     # Check that data looks correct
     print(X_val.shape)
@@ -222,7 +228,7 @@ def embeddings_main():
 
     print(X_train.shape)
 
-    return X_train, X_val
+    return X_train, X_val, X_test
 
 
 
@@ -232,6 +238,6 @@ if __name__ == '__main__':
     np.savez_compressed('data/X_train_mean_emb', X_train)
     np.savez_compressed('data/X_val_mean_emb', X_val)
 
-    X_train, X_val = embeddings_main()
+    X_train, X_val, X_test = embeddings_main()
     np.savez_compressed('data/X_train_emb', X_train)
     np.savez_compressed('data/X_val_emb', X_val)

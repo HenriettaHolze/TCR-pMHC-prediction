@@ -21,11 +21,12 @@ def setup_seed(seed):
 setup_seed(1)
 
 X_train = np.load('../data/X_train_pca_100.npz')['arr_0']
-
 X_val = np.load('../data/X_val_pca_100.npz')['arr_0']
+X_test = np.load('../data/X_test_pca.npz')['arr_0']
 
 y_train = np.load('../data/y_train.npz')['arr_0']
 y_val = np.load('../data/y_val.npz')['arr_0']
+y_test = np.load('../data/y_test.npz')['arr_0']
 
 nsamples, nx, ny = X_val.shape
 print("val set shape:", nsamples, nx, ny)
@@ -44,11 +45,16 @@ for i in range(len(X_train)):
 val_ds = []
 for i in range(len(X_val)):
     val_ds.append([np.transpose(X_val[i]), y_val[i]])
-    
+
+test_ds = []
+for i in range(len(X_test)):
+    test_ds.append([np.transpose(X_test[i]), y_test[i]])
+
 bat_size = 64
 print("\nNOTE:\nSetting batch-size to", bat_size)
 train_ldr = torch.utils.data.DataLoader(train_ds, batch_size=bat_size, shuffle=True)
 val_ldr = torch.utils.data.DataLoader(val_ds, batch_size=bat_size, shuffle=True)
+test_ldr = torch.utils.data.DataLoader(test_ds, batch_size=bat_size, shuffle=True)
 
 
 # Set device
@@ -295,18 +301,6 @@ for batch_idx, (data, target) in enumerate(train_ldr):
     train_preds_auc += list(preds_auc.data.numpy().flatten())
     
     
-# Selection of the best MCC
-best_mcc = 0
-best_threshold = None
-thresholds = np.linspace(0.01,0.99,50)
-for threshold in thresholds:
-    rounded_preds = (train_preds > threshold).astype(int)
-    mcc = matthews_corrcoef(train_targs, rounded_preds)
-    if mcc > best_mcc:
-        best_mcc = mcc
-        best_threshold = threshold
-        
-print("After training, the best MCC found is {} with threshold = {}".format(best_mcc,best_threshold))
 
 
 final_model.eval()
@@ -326,9 +320,39 @@ with torch.no_grad():
         val_targs += list(np.array(y_batch_val.cpu()))
         val_loss += val_batch_loss.cpu().detach()
 
+test_preds, test_preds_auc, test_targs = [], [], []
+with torch.no_grad():
+    for batch_idx, (data, target) in enumerate(test_ldr):  ###
+        x_batch_val = data.float().detach().cuda(device)
+        y_batch_val = target.float().detach().cuda(device).unsqueeze(1)
+
+        output = final_model(x_batch_val)
+
+        preds = np.round(output.cpu().detach())
+        test_preds += list(preds.cpu().data.numpy().flatten())
+        preds_auc = output.cpu().detach()
+        test_preds_auc += list(preds_auc.data.numpy().flatten())
+        test_targs += list(np.array(y_batch_val.cpu()))
+
+# Selection of the best MCC
+best_mcc = 0
+best_threshold = None
+thresholds = np.linspace(0.01,0.99,50)
+for threshold in thresholds:
+    rounded_preds = (val_preds > threshold).astype(int)
+    mcc = matthews_corrcoef(val_targs, rounded_preds)
+    if mcc > best_mcc:
+        best_mcc = mcc
+        best_threshold = threshold
+
+
+print("After training, the best MCC found is {} with threshold = {}".format(best_mcc,best_threshold))
+
+
 
 train_preds = (train_preds > best_threshold).astype(int)
 val_preds = (val_preds > best_threshold).astype(int)
+test_preds = (test_preds > best_threshold).astype(int)
 
 print("MCC Train:", matthews_corrcoef(train_targs, train_preds))
 print("MCC Test:", matthews_corrcoef(val_targs, val_preds))
@@ -344,6 +368,18 @@ print("F1 Test:", f1_val)
 print("Confusion matrix train:", confusion_matrix(train_targs, train_preds), sep="\n")
 print("Confusion matrix test:", confusion_matrix(val_targs, val_preds), sep="\n")
 
+print('Last partition')
+print("MCC Test:", matthews_corrcoef(test_targs, test_preds))
+
+prec_test = metrics.precision_score(test_targs, test_preds)
+rec_test = metrics.recall_score(test_targs, test_preds)
+f1_test = 2 * ((prec_test * rec_test) / (prec_test + rec_test))
+
+print("Precision Test:", prec_test)
+print("Recall Test:", rec_test)
+print("F1 Test:", f1_test)
+
+print("Confusion matrix test:", confusion_matrix(test_targs, test_preds), sep="\n")
 
 def plot_roc(targets, predictions):
     # ROC
@@ -369,4 +405,7 @@ plt.savefig('../plots/training_AUC')
 plot_roc(val_targs, val_preds_auc)
 plt.title("Validation AUC")
 plt.savefig('../plots/validation_AUC')
+plot_roc(test_targs, test_preds_auc)
+plt.title("Test AUC")
+plt.savefig('../plots/test_AUC')
 plt.show()

@@ -49,11 +49,12 @@ nsamples, nx, ny = X_train.shape
 print("Training set shape:", nsamples, nx, ny)
 
 X_val = np.concatenate(data_list[-1:])
+X_test = np.load("hackathon_data_scripts/data/final_test/P5_input.npz")['arr_0']
 nsamples, nx, ny = X_val.shape
 print("val set shape:", nsamples, nx, ny)
 
-name_list = ['X_val', 'X_train']
-for j, data in enumerate([X_val, X_train]):
+name_list = ['X_val', 'X_train', 'X_test']
+for j, data in enumerate([X_val, X_train, X_test]):
     complex_sequences = extract_sequences(data)
 
     # MHCs
