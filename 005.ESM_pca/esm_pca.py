@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, roc_curv
 import random
 
 plt.style.use('seaborn-poster')
+
+
 def setup_seed(seed):
     random.seed(seed)                          
     np.random.seed(seed)                       
@@ -264,19 +266,23 @@ for epoch in range(num_epochs):
 
 # Plots of training epochs
 epoch = np.arange(1, len(train_acc) + 1)
-plt.figure()
-plt.plot(epoch, losses, "r", epoch, val_losses, "b")
-plt.legend(["Train Loss", "Validation Loss"])
-plt.vlines(best_epoch, ymin=0, ymax=0.005, linestyles='dashed')
+plt.figure(figsize=(6,4))
+plt.plot(epoch, losses, "r", label='Training Loss')
+plt.plot(epoch, val_losses, "b", label='Valdidation Loss')
+plt.vlines(best_epoch, ymin=0, ymax=0.005, linestyles='dashed', label='Early Stopping Epoch')
 plt.xlabel("Epoch"), plt.ylabel("Loss")
+plt.legend()
+plt.tight_layout()
 plt.savefig('../plots/loss_curve')
 
 epoch = np.arange(1, len(train_acc) + 1)
-plt.figure()
-plt.plot(epoch, train_acc, "r", epoch, valid_acc, "b")
-plt.legend(["Train Accuracy", "Validation Accuracy"])
-plt.vlines(best_epoch, ymin=0, ymax=0.9, linestyles='dashed')
+plt.figure(figsize=(6,4))
+plt.plot(epoch, train_acc, "r", label='Training Accuracy')
+plt.plot(epoch, valid_acc, "b", label='Validation Accuarcy')
+plt.vlines(best_epoch, ymin=0, ymax=0.9, linestyles='dashed', label='Early Stopping Epoch')
 plt.xlabel("Epoch"), plt.ylabel("Acc")
+plt.legend()
+plt.tight_layout()
 plt.savefig('../plots/accuracy_curve')
 
 
@@ -388,7 +394,7 @@ def plot_roc(targets, predictions):
     roc_auc = metrics.auc(fpr, tpr)
 
     # plot ROC
-    plt.figure()
+    plt.figure(figsize=(6,4))
     plt.title("Receiver Operating Characteristic")
     plt.plot(fpr, tpr, "b", label="AUC = %0.2f" % roc_auc)
     plt.legend(loc="lower right")
@@ -397,6 +403,7 @@ def plot_roc(targets, predictions):
     plt.ylim([0, 1])
     plt.ylabel("True Positive Rate")
     plt.xlabel("False Positive Rate")
+    plt.tight_layout()
     # plt.show()
 
 
