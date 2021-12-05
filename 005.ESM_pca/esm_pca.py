@@ -9,6 +9,8 @@ from sklearn import metrics
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, roc_curve, matthews_corrcoef
 import random
 
+plt.style.use('seaborn-poster')
+
 
 def setup_seed(seed):
     random.seed(seed)                          
@@ -18,7 +20,7 @@ def setup_seed(seed):
     torch.cuda.manual_seed_all(seed)           
     torch.backends.cudnn.deterministic = True  
 # Set seed
-setup_seed(1)
+setup_seed(2)
 
 X_train = np.load('../data/X_train_pca.npz')['arr_0']
 X_val = np.load('../data/X_val_pca.npz')['arr_0']
@@ -82,12 +84,12 @@ class Net(nn.Module):
     def __init__(self,  num_classes):
         super(Net, self).__init__()   
         self.bn0 = nn.BatchNorm1d(n_local_feat)
-        self.conv1 = nn.Conv1d(in_channels=n_local_feat, out_channels=300, kernel_size=3, stride=2, padding=1)
+        self.conv1 = nn.Conv1d(in_channels=n_local_feat, out_channels=200, kernel_size=3, stride=2, padding=1)
         torch.nn.init.kaiming_uniform_(self.conv1.weight)
         self.pool = nn.MaxPool1d(kernel_size=2, stride=2)
-        self.conv1_bn = nn.BatchNorm1d(300)
+        self.conv1_bn = nn.BatchNorm1d(200)
         
-        self.conv2 = nn.Conv1d(in_channels=300, out_channels=100, kernel_size=3, stride=2, padding=1)
+        self.conv2 = nn.Conv1d(in_channels=200, out_channels=100, kernel_size=3, stride=2, padding=1)
         torch.nn.init.kaiming_uniform_(self.conv2.weight)
         self.conv2_bn = nn.BatchNorm1d(100)
         
@@ -98,17 +100,17 @@ class Net(nn.Module):
         self.bn1 = nn.BatchNorm1d(26*2 + n_global_feat)
         self.drop = nn.Dropout(p = 0.6) # Dunno if dropout should be even higher?? - Christian
         self.fc1 = nn.Linear(26*2 + n_global_feat, 26*2 + n_global_feat)
-        torch.nn.init.xavier_uniform_(self.fc1.weight)
+        torch.nn.init.kaiming_uniform_(self.fc1.weight)
         ########
         
         # since we add new features in this step, we have to use batch normalization again
         
         # if we pipe the global terms innto the fc, we should have more than just 1
         self.fc2 = nn.Linear(26*2 + n_global_feat, (26*2 + n_global_feat))
-        torch.nn.init.xavier_uniform_(self.fc2.weight)
+        torch.nn.init.kaiming_uniform_(self.fc2.weight)
 
         self.fc3 = nn.Linear(26*2 + n_global_feat, num_classes)
-        torch.nn.init.xavier_uniform_(self.fc3.weight)
+        torch.nn.init.kaiming_uniform_(self.fc3.weight)
 
     def forward(self, x):
         # local_features = x[:, 20:27, :] ##
@@ -264,19 +266,23 @@ for epoch in range(num_epochs):
 
 # Plots of training epochs
 epoch = np.arange(1, len(train_acc) + 1)
-plt.figure()
-plt.plot(epoch, losses, "r", epoch, val_losses, "b")
-plt.legend(["Train Loss", "Validation Loss"])
-plt.vlines(best_epoch, ymin=0, ymax=0.005, linestyles='dashed')
+plt.figure(figsize=(6,4))
+plt.plot(epoch, losses, "r", label='Training Loss')
+plt.plot(epoch, val_losses, "b", label='Valdidation Loss')
+plt.vlines(best_epoch, ymin=0, ymax=0.005, linestyles='dashed', label='Early Stopping Epoch')
 plt.xlabel("Epoch"), plt.ylabel("Loss")
+plt.legend()
+plt.tight_layout()
 plt.savefig('../plots/loss_curve')
 
 epoch = np.arange(1, len(train_acc) + 1)
-plt.figure()
-plt.plot(epoch, train_acc, "r", epoch, valid_acc, "b")
-plt.legend(["Train Accuracy", "Validation Accuracy"])
-plt.vlines(best_epoch, ymin=0, ymax=0.9, linestyles='dashed')
+plt.figure(figsize=(6,4))
+plt.plot(epoch, train_acc, "r", label='Training Accuracy')
+plt.plot(epoch, valid_acc, "b", label='Validation Accuarcy')
+plt.vlines(best_epoch, ymin=0, ymax=0.9, linestyles='dashed', label='Early Stopping Epoch')
 plt.xlabel("Epoch"), plt.ylabel("Acc")
+plt.legend()
+plt.tight_layout()
 plt.savefig('../plots/accuracy_curve')
 
 
@@ -322,7 +328,7 @@ with torch.no_grad():
 
 test_preds, test_preds_auc, test_targs = [], [], []
 with torch.no_grad():
-    for batch_idx, (data, target) in enumerate(val_ldr):  ###
+    for batch_idx, (data, target) in enumerate(test_ldr):  ###
         x_batch_val = data.float().detach().cuda(device)
         y_batch_val = target.float().detach().cuda(device).unsqueeze(1)
 
@@ -352,7 +358,7 @@ print("After training, the best MCC found is {} with threshold = {}".format(best
 
 train_preds = (train_preds > best_threshold).astype(int)
 val_preds = (val_preds > best_threshold).astype(int)
-test_preds = (test_preds > best_threshold).astype(int)
+test_preds_opt = (test_preds > best_threshold).astype(int)
 
 print("MCC Train:", matthews_corrcoef(train_targs, train_preds))
 print("MCC Test:", matthews_corrcoef(val_targs, val_preds))
@@ -370,6 +376,7 @@ print("Confusion matrix test:", confusion_matrix(val_targs, val_preds), sep="\n"
 
 print('Last partition')
 print("MCC Test:", matthews_corrcoef(test_targs, test_preds))
+print("MCC Test optimal MCC:", matthews_corrcoef(test_targs, test_preds))
 
 prec_test = metrics.precision_score(test_targs, test_preds)
 rec_test = metrics.recall_score(test_targs, test_preds)
@@ -387,7 +394,7 @@ def plot_roc(targets, predictions):
     roc_auc = metrics.auc(fpr, tpr)
 
     # plot ROC
-    plt.figure()
+    plt.figure(figsize=(6,4))
     plt.title("Receiver Operating Characteristic")
     plt.plot(fpr, tpr, "b", label="AUC = %0.2f" % roc_auc)
     plt.legend(loc="lower right")
@@ -396,6 +403,7 @@ def plot_roc(targets, predictions):
     plt.ylim([0, 1])
     plt.ylabel("True Positive Rate")
     plt.xlabel("False Positive Rate")
+    plt.tight_layout()
     # plt.show()
 
 
